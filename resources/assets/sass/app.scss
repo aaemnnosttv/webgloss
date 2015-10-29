@@ -1,0 +1,23 @@
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "bower_components/bootstrap/scss/bootstrap";
+
+header.primary {
+	margin-bottom: 2em;
+}
+
+.Terms_List
+{
+	.actions {
+		opacity: 0;
+		transition: 0.15s opacity linear;
+	}
+	tr:hover {
+		background: rgba(orange, 0.2) !important;
+		.actions {
+			opacity: 1;
+		}
+	}
+	form {
+		margin-bottom: 0;
+	}
+}

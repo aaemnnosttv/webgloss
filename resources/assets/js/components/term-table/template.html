@@ -1,0 +1,13 @@
+<table class="Terms_List table table-striped" v-if="terms.length">
+    <tr v-for="term in terms | iSortBy 'name'" data-id="{{term.id}}">
+        <td v-text="term.acronym || term.name"></td>
+        <td v-text="term.definition | truncate 75"></td>
+        <td>
+            <div class="btn-group actions" role="group" aria-label="Basic example">
+                <button v-on:click="edit(term)" class="btn btn-secondary"><i class="fa fa-cog"></i></button>
+                <!--<button v-on:click="alias(term)" class="btn btn-secondary"><i class="fa fa-clone"></i></button>-->
+                <button v-on:click="destroy(term)" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+            </div>
+        </td>
+    </tr>
+</table>
