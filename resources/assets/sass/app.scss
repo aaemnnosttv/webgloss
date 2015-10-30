@@ -12,11 +12,32 @@ header.primary {
 		transition: 0.15s opacity linear;
 	}
 	tr:hover {
-		background: rgba(orange, 0.2) !important;
+		background: rgba($alert-info-bg, 0.3) !important;
 		.actions {
 			opacity: 1;
 		}
 	}
+	tr > td:last-child {
+		min-width: 140px;
+	}
+	.actions .btn i {
+		@extend .fa-fw;
+	}
+
+	.btn-edit {
+		&:hover {
+			@extend .btn-info;
+		}
+		&:hover i {
+			@extend .fa-spin;
+		}
+	}
+	.btn-delete {
+		&:hover {
+			@extend .btn-danger;
+		}
+	}
+
 	form {
 		margin-bottom: 0;
 	}
