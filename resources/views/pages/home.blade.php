@@ -10,7 +10,7 @@
         <hr class="m-y-md">
         {{--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>--}}
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{{ action('TermsController@index') }}" role="button">Start Browsing</a>
+            <a class="btn btn-primary btn-lg" href="{{ route('term.index') }}" role="button">Start Browsing</a>
         </p>
     </div>
 
