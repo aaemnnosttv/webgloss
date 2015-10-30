@@ -1,0 +1,27 @@
+{
+  "name": "webgloss",
+  "description": "A pretty rad glossary app",
+  "main": "",
+  "authors": [
+    "Evan Mattson <me@aaemnnost.tv>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "vue"
+  ],
+  "homepage": "https://github.com/aaemnnosttv/webgloss",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha",
+    "font-awesome": "fontawesome#~4.4.0"
+  }
+}
