@@ -52,7 +52,7 @@ class TermsController extends Controller
         $term = Term::create($request->all());
 
         if ( $request->ajax() ) {
-            return $term;
+            return compact('term');
         }
 
         return redirect()->route('terms');
@@ -102,6 +102,10 @@ class TermsController extends Controller
         $term->fill($request->all())
             ->save();
 
+        if ($request->ajax()) {
+            return compact('term');
+        }
+
         return redirect()->route('terms');
     }
 
@@ -116,7 +120,7 @@ class TermsController extends Controller
         $success = Term::destroy($id);
 
         if ($request->ajax()) {
-            return $success;
+            return compact('success','id');
         }
 
         if ( ! $success ) {
