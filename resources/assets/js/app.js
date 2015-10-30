@@ -67,6 +67,7 @@ var vm = new Vue({
     // show modal to create a new term
     termCreate: function() {
       this.$data.modalAction = 'save'; // vue-resource
+      this.resetModal();
       this.$broadcast('show-modal', 'term_form');
     },
     // show modal to edit a term
