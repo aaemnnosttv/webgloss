@@ -18,10 +18,10 @@ module.exports = {
 
   methods: {
     edit: function(term) {
-      this.$broadcast('edit-term', term);
+      this.$dispatch('edit-term', term);
     },
     alias: function(term) {
-      this.$broadcast('alias-term', term);
+      this.$dispatch('alias-term', term);
     },
     destroy: function(term) {
       console.log('term-table::destroy()', term);
