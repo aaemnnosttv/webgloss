@@ -1,0 +1,7 @@
+<div class="alert {{alertState}} fade in" role="alert" :class="{'alert-dismissible': dismissible}" v-show="show">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" v-if="dismissible" :click="dismiss">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <span v-html="message"></span>
+</div>

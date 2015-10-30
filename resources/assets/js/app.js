@@ -11,7 +11,8 @@ var vm = new Vue({
 
   components: {
     "term-table": require('./components/term-table/term-table'),
-    "modal": require('./components/modal/modal')
+    "modal": require('./components/modal/modal'),
+    "alert": require('./components/alert/alert')
   },
 
   data: {
