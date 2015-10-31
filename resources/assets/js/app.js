@@ -1,9 +1,24 @@
+var Pusher = require('pusher-js');
 var Vue = require('vue');
 var _ = require('lodash');
 
 Vue.config.debug = true;
 Vue.use(require('vue-resource'));
 Vue.http.headers.common['X-CSRF-TOKEN'] = App.csrfToken;
+
+// Enable pusher logging - don't include this in production
+if (App.debug && window.console && window.console.log) {
+  Pusher.log = function(message) {
+    window.console.log(message);
+  };
+}
+
+var pusher = new Pusher(App.pusher.key, {
+  encrypted: true
+});
+var channel = {
+  term: pusher.subscribe('term')
+};
 
 var vm = new Vue({
 
@@ -28,6 +43,16 @@ var vm = new Vue({
   ready: function() {
     console.log('Vue ready!');
 
+    channel.term.bind('App\\Events\\TermCreated', function(data) {
+      this.$data.terms.push(data.term);
+    }.bind(this));
+    channel.term.bind('App\\Events\\TermUpdated', function(data) {
+      this.updateTerm(data.term);
+    }.bind(this));
+    channel.term.bind('App\\Events\\TermDeleted', function(data) {
+      this.removeTerm(data.term);
+    }.bind(this));
+
   },
 
   events: {
@@ -48,9 +73,7 @@ var vm = new Vue({
   methods: {
     loadTerms: function() {
       this.$http.get('/term', function (data, status, request) {
-        console.log('terms', status, data);
-
-        this.$set('terms', data);
+        this.$data.terms = data;
       }).error(this.errorHandler.bind(this));
     },
 
@@ -63,7 +86,6 @@ var vm = new Vue({
         definition: ''
       };
     },
-
     // show modal to create a new term
     termCreate: function() {
       this.$data.modalAction = 'save'; // vue-resource
@@ -82,14 +104,6 @@ var vm = new Vue({
 
       this.$resource('term/:id')[ action ]({id: term.id}, term, function(data, status, request) {
         console.log('commitTerm success!', action, arguments);
-        // push on the new term if it was successful
-        if (action === "save" && "object" === typeof data.term) {
-          this.$data.terms.push(data.term);
-        }
-        // update the term if it was successful edit
-        if (action === "update" && "object" === typeof data.term) {
-          this.updateTerm(data.term);
-        }
         this.resetModal();
         this.$broadcast('hide-modal', 'term_form');
       }).error(this.errorHandler.bind(this));
@@ -97,10 +111,8 @@ var vm = new Vue({
 
     destroyTerm: function(term) {
       if (window.confirm('Are you sure?')) {
-        this.$http.delete('/term/'+ term.id, function(data, status, request) {
-          console.log('deleting term', status, data);
-          this.removeTerm(term);
-        }).error(this.errorHandler.bind(this));
+        this.$resource('term/:id').delete({id: term.id})
+          .error(this.errorHandler.bind(this));
       }
     },
 

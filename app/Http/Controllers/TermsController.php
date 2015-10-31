@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TermCreated;
+use App\Events\TermDeleted;
+use App\Events\TermUpdated;
 use App\Term;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 
 class TermsController extends Controller
@@ -51,6 +55,8 @@ class TermsController extends Controller
 
         $term = Term::create($request->all());
 
+        Event::fire(new TermCreated($term));
+
         if ( $request->ajax() ) {
             return compact('term');
         }
@@ -91,7 +97,7 @@ class TermsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /* @var App\Term */
+        /* @var \App\Term */
         $term = Term::findOrFail($id);
 
         $this->validate($request, [
@@ -101,6 +107,8 @@ class TermsController extends Controller
 
         $term->fill($request->all())
             ->save();
+
+        Event::fire(new TermUpdated($term));
 
         if ($request->ajax()) {
             return compact('term');
@@ -112,20 +120,24 @@ class TermsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int    $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         $success = Term::destroy($id);
 
-        if ($request->ajax()) {
-            return compact('success','id');
+        if ( ! $success && ! $request->ajax()) {
+            return redirect()->route('term.index')
+                             ->with('errors', 'Term could not be deleted!');
         }
 
-        if ( ! $success ) {
-            return redirect()->route('home')
-                ->with('errors', 'Term could not be deleted!');
+        Event::fire(new TermDeleted($id));
+
+        if ($request->ajax()) {
+            return compact('success','id');
         }
 
         return redirect()->route('terms')
