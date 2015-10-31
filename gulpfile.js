@@ -12,6 +12,8 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    mix.copy('bower_components/font-awesome/fonts/', 'public/fonts');
+
     mix.sass('app.scss')
 			.scripts('app.js')
 			.browserify('app.js')
