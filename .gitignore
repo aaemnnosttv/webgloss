@@ -8,3 +8,4 @@ storage/database.sqlite
 .idea
 /public/css
 /public/js
+/public/fonts
