@@ -10,8 +10,8 @@
         <div class="container">
             <a class="navbar-brand" href="/">WebGloss</a>
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ route('term.index') }}">Terms</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('term.create') }}">Define</a></li>
+                <nav-item link="{{ route('term.index') }}">Terms</nav-item>
+                <nav-item link="{{ route('term.create') }}">Define</nav-item>
             </ul>
         </div>
     </nav>
