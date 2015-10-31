@@ -57,6 +57,7 @@ var vm = new Vue({
 
   events: {
     'load-terms': function() {
+      console.log('event::load-terms');
       this.loadTerms();
     },
     'edit-term': function(term) {
