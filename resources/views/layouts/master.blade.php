@@ -25,7 +25,11 @@
 
 <script>
 window.App = {
-    csrfToken: '{{ csrf_token() }}'
+    csrfToken: '{{ csrf_token() }}',
+    debug: {{ (bool) env('APP_DEBUG') }},
+    pusher: {
+        key: '{{ env('PUSHER_KEY') }}'
+    }
 }
 </script>
 <script src="/js/app.js"></script>
