@@ -133,7 +133,9 @@ var vm = new Vue({
 
     errorHandler: function (data, status, request) {
       console.log('Error!', status, request, data);
-      this.$data.errors = _.values(data);
+      if ("object" === typeof data) {
+        this.$data.errors = _.values(data);
+      }
     }
   }, // methods
 
