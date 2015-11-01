@@ -7,9 +7,9 @@ Vue.use(require('vue-resource'));
 Vue.http.headers.common['X-CSRF-TOKEN'] = App.csrfToken;
 
 // Enable pusher logging - don't include this in production
-if (App.debug && window.console && window.console.log) {
+if (App.debug && window.console && window.console.debug) {
   Pusher.log = function(message) {
-    window.console.log(message);
+    window.console.debug(message);
   };
 }
 
