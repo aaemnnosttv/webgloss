@@ -40,8 +40,11 @@
 
         <div slot="footer">
             <div class="form-group">
+                <button v-on:click="$broadcast('hide-modal','term_form')"
+                        class="btn btn-secondary-outline"
+                >Cancel</button>
                 <button v-on:click="commitTerm"
-                        class="btn btn-default btn-large"
+                        class="btn btn-secondary btn-large"
                         :class="{ 'btn-primary': modalTerm.name && modalTerm.definition }"
                         :disabled="modalTerm.name && modalTerm.definition ? false : 'disabled'"
                 >Submit</button>
