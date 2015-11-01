@@ -7,7 +7,15 @@
         <button v-on:click="termCreate" class="btn btn-info pull-right"><i class="fa fa-plus"></i></button>
     </h1>
 
-    <term-table :terms="terms"></term-table>
+    <div class="form-group">
+        <input type="search" class="form-control" v-model="filter" placeholder="Filter terms">
+    </div>
+    <div class="filter-results" v-show="filter">
+        Showing <kbd class="count" v-text="terms | filterBy filter in 'name' 'acronym' 'definition' | length"></kbd> Results
+    </div>
+    <hr>
+
+    <term-table :terms="terms | filterBy filter in 'name' 'acronym' 'definition'"></term-table>
 
     <modal id="term_form">
         <div slot="header">

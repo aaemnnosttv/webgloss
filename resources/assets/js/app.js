@@ -34,6 +34,7 @@ var vm = new Vue({
   data: {
     terms: [],
     errors: [],
+    filter: '',
     modalTerm: {
       name: '',
       acronym: '',
