@@ -1,7 +1,8 @@
 module.exports = {
 
   props: {
-    link: {default: ''}
+    link: {default: ''},
+    inner: {default: ''}
   },
 
   template: require('./template.html'),

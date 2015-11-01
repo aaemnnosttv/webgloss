@@ -1,7 +1,7 @@
 <li class="nav-item"
    :class="{ active: isActive() }">
     <a class="nav-link"
-       :href="link">
-        <slot></slot>
+       :href="link"
+       v-html="inner">
     </a>
 </li>
