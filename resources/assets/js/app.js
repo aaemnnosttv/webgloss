@@ -146,6 +146,14 @@ var vm = new Vue({
       if ("object" === typeof content) {
         return content.join('<br>');
       }
+
+      return content;
+    },
+    length: function(content) {
+      if ("object" === typeof content) {
+        return content.length;
+      }
+
       return content;
     }
   }
