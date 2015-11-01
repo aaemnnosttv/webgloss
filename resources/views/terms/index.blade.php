@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <h3>
+    <h1>
         <span v-text="terms.length"></span> terms, and counting...
         <button v-on:click="termCreate" class="btn btn-info pull-right"><i class="fa fa-plus"></i></button>
-    </h3>
+    </h1>
 
     <term-table :terms="terms"></term-table>
 
