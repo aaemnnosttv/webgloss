@@ -11,15 +11,25 @@ header.primary {
 		opacity: 0;
 		transition: 0.15s opacity linear;
 	}
-	tr:hover {
-		background: rgba($alert-info-bg, 0.3) !important;
-		.actions {
-			opacity: 1;
+	.row {
+		@extend .p-y;
+
+		&:hover {
+			background: rgba($alert-info-bg, 0.3) !important;
+			.actions {
+				opacity: 1;
+			}
+		}
+
+		> [class^=col-md]:last-child {
+			text-align: right;
+		}
+
+		+ .row {
+			border-top: 1px dotted $gray-lighter;
 		}
 	}
-	tr > td:last-child {
-		min-width: 140px;
-	}
+
 	.actions .btn i {
 		@extend .fa-fw;
 	}
