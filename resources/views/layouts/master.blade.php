@@ -23,6 +23,20 @@
     </div>
 </main>
 
+<footer>
+    <div class="container text-muted">
+        <div class="built-with text-center">
+            <ul class="list-inline">
+                <li><a href="http://laravel.com" target="_blank">Laravel</a></li>
+                <li><a href="http://vuejs.org/" target="_blank">Vue</a></li>
+                <li><a href="https://pusher.com" target="_blank">Pusher</a></li>
+                <li><a href="http://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap</a></li>
+            </ul>
+            <div class="byline"><a href="https://github.com/aaemnnosttv/webgloss"><i class="fa fa-2x fa-github"></i></a></div>
+        </div>
+    </div>
+</footer>
+
 <script>
 window.App = {
     csrfToken: '{{ csrf_token() }}',
